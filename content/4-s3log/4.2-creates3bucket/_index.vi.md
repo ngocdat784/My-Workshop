@@ -1,6 +1,6 @@
 ---
 title : "Tạo S3 Bucket"
-date :  "`r Sys.Date()`" 
+date: 2026-05-10 
 weight : 2 
 chapter : false
 pre : " <b> 4.2 </b> "
@@ -34,3 +34,4 @@ Tên S3 bucket phải đảm bảo không trùng với toàn bộ S3 bucket khá
 Khi tạo S3 bucket chúng ta đã thực hiện **Block all public access** nên các EC2 instance của chúng ta sẽ không thể kết nối tới S3 thông qua mạng internet.
 Trong bước tiếp theo chúng ta sẽ cấu hình tính năng S3 Gateway Endpoint để cho phép các EC2 instance có thể kết nối tới S3 bucket thông qua mạng nội bộ của VPC.
 {{%/notice%}}
+

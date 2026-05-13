@@ -1,6 +1,6 @@
 ---
 title : "Port Forwarding"
-date :  "`r Sys.Date()`" 
+date: 2026-05-10 
 weight : 5 
 chapter : false
 pre : " <b> 5. </b> "

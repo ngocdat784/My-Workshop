@@ -1,22 +1,29 @@
 ---
-title : "Session Management"
-date :  "`r Sys.Date()`" 
+title : "Dự án Workshop của Bạn"
+date: 2026-05-11 
 weight : 1 
 chapter : false
 ---
-# Làm việc với Amazon System Manager - Session Manager
+# Tiêu đề Dự án Workshop AWS của Bạn
 
 ### Tổng quan
 
- Trong bài lab này, bạn sẽ tìm hiểu các khái niệm cơ bản và thực hành về Amazon System Manager - Session Management. Thực hành tạo kết nối đến máy chủ public và máy chủ private trong VPC.
+Trong workshop này, bạn sẽ học cách xây dựng [mô tả dự án, ví dụ: Ứng dụng Todo Serverless] sử dụng các dịch vụ AWS. Bạn sẽ [mô tả ngắn gọn].
 
-![ConnectPrivate](/images/arc-log.png) 
+![Kiến trúc](/images/your-architecture.png) 
 
 ### Nội dung
 
- 1. [Giới thiệu](1-introduce/)
- 2. [Các bước chuẩn bị](2-Prerequiste/)
- 3. [Tạo kết nối đến máy chủ EC2](3-Accessibilitytoinstance/)
- 4. [Quản lý session logs](4-s3log/)
- 5. [Port Forwarding](5-Portfwd/)
- 6. [Dọn dẹp tài nguyên](6-cleanup/)
+1. [Giới thiệu](1-introduce/)
+2. [Điều kiện tiên quyết](2-prerequisite/)
+3. [Thiết lập Dịch vụ](3-setup/)
+4. [Triển khai](4-implementation/)
+5. [Kiểm thử](5-testing/)
+6. [Dọn dẹp](6-cleanup/)
+5. [Thiết lập DynamoDB](5-dynamodb/)
+6. [Tạo API Gateway](6-api-gateway/)
+7. [Cấu hình quy tắc và hành động](7-rules/)
+8. [Kiểm thử](8-test/)
+9. [Giám sát](9-monitor/)
+10. [Dọn dẹp](10-cleanup/)
+

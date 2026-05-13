@@ -1,6 +1,6 @@
 ---
 title : "Theo dõi session logs"
-date :  "`r Sys.Date()`" 
+date: 2026-05-10 
 weight : 4 
 chapter : false
 pre : " <b> 4.4 </b> "
@@ -51,4 +51,5 @@ pre : " <b> 4.4 </b> "
 4. File logs sẽ được mở ở 1 tab mới trên trình duyệt.Bạn có thể xem các câu lệnh đã được lưu trữ lại trong  session logs.
 
 ![S3](/images/4.s3/015-s3.png)
+
 

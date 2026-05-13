@@ -1,6 +1,6 @@
 ---
 title : "Quản lý session logs"
-date :  "`r Sys.Date()`" 
+date: 2026-05-10 
 weight : 4 
 chapter : false
 pre : " <b> 4. </b> "
@@ -21,3 +21,4 @@ Trong phần này chúng ta sẽ tiến hành tạo S3 bucket và thực hiện 
   - [Tạo **S3 Bucket**](./4.2-creates3bucket/)
   - [Tạo S3 Gateway endpoint](./4.3-creategwes3)
   - [Cấu hình **Session logs**](./4.4-configsessionlogs/)
+

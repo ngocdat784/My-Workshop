@@ -1,21 +1,25 @@
 ---
-title : "Session Management"
-date :  "`r Sys.Date()`" 
+title : "Your Workshop Project"
+date: 2026-05-11 
 weight : 1 
 chapter : false
 ---
-# Work with Amazon System Manager - Session Manager
+# Your AWS Workshop Project Title
 
 ### Overall
- In this lab, you'll learn the basics and practice of Amazon  System Manager - Session Manager
-. Perform creating public and private instance connections. 
+In this workshop, you'll learn how to build [describe your project, e.g., a Serverless Todo Application] using AWS services. You'll [brief description].
 
-![ConnectPrivate](/images/arc-log.png) 
+![Architecture](/images/your-architecture.png) 
 
 ### Content
- 1. [Introduction ](1-introduce/)
- 2. [Preparation](2-prerequiste/)
- 3. [Connect to EC2 instance](3-accessibilitytoinstances/)
- 4. [Manage session logs](4-s3log/)
- 5. [Port Forwarding](5-Portfwd/)
- 6. [Clean up resources](6-cleanup/)
+1. [Introduction](1-introduce/)
+2. [Prerequisites](2-prerequisite/)
+3. [Set up Services](3-setup/)
+4. [Implementation](4-implementation/)
+5. [Testing](5-testing/)
+6. [Clean-up](6-cleanup/)
+7. [Configure Rules and Actions](7-rules/)
+8. [Testing](8-test/)
+9. [Monitoring](9-monitor/)
+10. [Clean up](10-cleanup/)
+

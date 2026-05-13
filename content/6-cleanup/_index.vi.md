@@ -1,5 +1,78 @@
-+++
-title = "Dọn dẹp tài nguyên  "
+---
+title: "Dọn dẹp Tài nguyên"
+weight: 6
+chapter: false
+pre: " <b> 6. </b> "
+---
+
+# Bước 4: Dọn dẹp Tài nguyên
+
+## ⚠️ QUAN TRỌNG
+
+Luôn dọn dẹp các tài nguyên AWS của bạn sau khi kiểm tra để tránh hóa đơn bất ngờ.
+
+---
+
+## Danh Sách Kiểm Tra
+
+- [ ] Xóa API Gateway
+- [ ] Xóa Lambda Functions
+- [ ] Xóa DynamoDB Table
+- [ ] Xóa IAM Policies/Roles
+- [ ] Xóa CloudWatch Logs
+
+---
+
+## 1. Xóa API Gateway
+
+```bash
+aws apigateway get-rest-apis --query 'items[?name==`TodoAPI`].id' --output text
+aws apigateway delete-rest-api --rest-api-id <API_ID>
+```
+
+---
+
+## 2. Xóa Lambda Functions
+
+```bash
+aws lambda delete-function --function-name CreateTodo
+aws lambda delete-function --function-name GetTodos
+aws lambda delete-function --function-name UpdateTodo
+aws lambda delete-function --function-name DeleteTodo
+```
+
+---
+
+## 3. Xóa DynamoDB Table
+
+```bash
+aws dynamodb delete-table --table-name todos
+```
+
+---
+
+## 4. Xóa CloudWatch Logs
+
+```bash
+aws logs delete-log-group --log-group-name /aws/lambda/CreateTodo
+aws logs delete-log-group --log-group-name /aws/lambda/GetTodos
+aws logs delete-log-group --log-group-name /aws/lambda/UpdateTodo
+aws logs delete-log-group --log-group-name /aws/lambda/DeleteTodo
+```
+
+---
+
+## 5. Xác minh
+
+```bash
+aws lambda list-functions --query "length(Functions)" --output text
+aws apigateway get-rest-apis --query "length(items)" --output text
+aws dynamodb list-tables --query "length(TableNames)" --output text
+```
+
+---
+
+**✅ Hoàn thiện! Chúc mừng khoá học! 🎉**
 date = 2021
 weight = 6
 chapter = false
