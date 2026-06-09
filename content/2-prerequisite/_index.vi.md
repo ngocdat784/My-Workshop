@@ -100,25 +100,3 @@ Workshop này sẽ **tốn kém dưới $1 USD** nếu:
 KHÔNG cam kết các thông tin đăng nhập AWS cho kiểm soát phiên bản. Thay vào đó, hãy sử dụng các tệp cấu hình AWS CLI trong `~/.aws/credentials`.
 {{% /notice %}}
 
-### Yêu cầu
-- Tài khoản AWS với quyền AdministratorAccess hoặc tương đương
-- AWS CLI đã cài đặt và cấu hình
-- Kiến thức cơ bản về các dịch vụ AWS
-- Làm quen với JSON và REST APIs
-- (Tùy chọn) Python 3.8+ để kiểm thử cục bộ
-
-### Dịch vụ AWS sử dụng
-- AWS IoT Core
-- AWS Lambda
-- Amazon DynamoDB
-- Amazon API Gateway
-- Amazon CloudWatch
-
-### Chi phí ước tính
-Workshop này sẽ tốn ít hơn $1 nếu hoàn thành trong vài giờ và dọn dẹp tài nguyên đúng cách.
-
-### Thời gian cần thiết
-Khoảng 2-3 giờ
-
-  
-

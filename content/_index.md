@@ -1,25 +1,45 @@
 ---
-title : "Your Workshop Project"
+title : "Serverless Todo API on AWS"
 date: 2026-05-11 
 weight : 1 
 chapter : false
 ---
-# Your AWS Workshop Project Title
 
-### Overall
-In this workshop, you'll learn how to build [describe your project, e.g., a Serverless Todo Application] using AWS services. You'll [brief description].
+# Serverless Todo API on AWS
 
-![Architecture](/images/your-architecture.png) 
+### Overview
+
+In this workshop, you will build a complete **Serverless Todo Application API** using three core AWS services. You will learn how to design, implement, and test a fully serverless REST API — with no servers to manage, automatic scaling, and pay-per-use pricing.
+
+![Architecture](/images/workshop-architecture.png)
+
+### Architecture
+
+```
+Client (Postman/Browser)
+         ↓
+Amazon API Gateway  (HTTP Endpoints)
+         ↓
+AWS Lambda Functions  (CRUD Business Logic)
+         ↓
+Amazon DynamoDB  (NoSQL Storage)
+```
+
+### AWS Services Used
+
+| Service | Role |
+|---|---|
+| **Amazon API Gateway** | Exposes public HTTP endpoints, handles routing |
+| **AWS Lambda** | Serverless functions that process each CRUD operation |
+| **Amazon DynamoDB** | Fully managed NoSQL database for storing todo items |
+| **AWS IAM** | Access control and least-privilege security |
+| **Amazon CloudWatch** | Monitoring, logging, and metrics |
 
 ### Content
+
 1. [Introduction](1-introduce/)
 2. [Prerequisites](2-prerequisite/)
-3. [Set up Services](3-setup/)
-4. [Implementation](4-implementation/)
-5. [Testing](5-testing/)
-6. [Clean-up](6-cleanup/)
-7. [Configure Rules and Actions](7-rules/)
-8. [Testing](8-test/)
-9. [Monitoring](9-monitor/)
-10. [Clean up](10-cleanup/)
-
+3. [Create DynamoDB Table](3-setup/)
+4. [Create Lambda Functions](4-implementation/)
+5. [Configure API Gateway & Test](5-testing/)
+6. [Clean up Resources](6-cleanup/)

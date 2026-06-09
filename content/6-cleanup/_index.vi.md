@@ -1,5 +1,6 @@
 ---
 title: "Dọn dẹp Tài nguyên"
+date: 2026-05-11
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
@@ -7,32 +8,55 @@ pre: " <b> 6. </b> "
 
 # Bước 4: Dọn dẹp Tài nguyên
 
-## ⚠️ QUAN TRỌNG
-
-Luôn dọn dẹp các tài nguyên AWS của bạn sau khi kiểm tra để tránh hóa đơn bất ngờ.
-
----
+{{% notice warning %}}
+Luôn xóa các tài nguyên AWS sau khi kiểm thử để tránh phát sinh chi phí không mong muốn.
+{{% /notice %}}
 
 ## Danh Sách Kiểm Tra
 
-- [ ] Xóa API Gateway
-- [ ] Xóa Lambda Functions
-- [ ] Xóa DynamoDB Table
-- [ ] Xóa IAM Policies/Roles
-- [ ] Xóa CloudWatch Logs
+- [ ] Xóa API Gateway (TodoAPI)
+- [ ] Xóa Lambda Functions (CreateTodo, GetTodos, UpdateTodo, DeleteTodo)
+- [ ] Xóa DynamoDB Table (todos)
+- [ ] Xóa IAM Roles đã tạo cho Lambda
+- [ ] Xóa CloudWatch Log Groups
 
 ---
 
 ## 1. Xóa API Gateway
 
+### Qua Console
+
+1. Truy cập [API Gateway Console](https://console.aws.amazon.com/apigateway/)
+2. Click vào **TodoAPI**
+3. Click **Actions** → **Delete API**
+4. Nhập tên API để xác nhận, sau đó click **Delete**
+
+### Qua CLI
+
 ```bash
-aws apigateway get-rest-apis --query 'items[?name==`TodoAPI`].id' --output text
-aws apigateway delete-rest-api --rest-api-id <API_ID>
+API_ID=$(aws apigateway get-rest-apis \
+  --query 'items[?name==`TodoAPI`].id' \
+  --output text)
+
+aws apigateway delete-rest-api --rest-api-id $API_ID
 ```
 
 ---
 
 ## 2. Xóa Lambda Functions
+
+### Qua Console
+
+1. Truy cập [Lambda Console](https://console.aws.amazon.com/lambda/)
+2. Đánh dấu chọn cả 4 function:
+   - `CreateTodo`
+   - `GetTodos`
+   - `UpdateTodo`
+   - `DeleteTodo`
+3. Click **Actions** → **Delete**
+4. Nhập `delete` để xác nhận, sau đó click **Delete**
+
+### Qua CLI
 
 ```bash
 aws lambda delete-function --function-name CreateTodo
@@ -45,13 +69,49 @@ aws lambda delete-function --function-name DeleteTodo
 
 ## 3. Xóa DynamoDB Table
 
+### Qua Console
+
+1. Truy cập [DynamoDB Console](https://console.aws.amazon.com/dynamodb/)
+2. Click **Tables** ở menu bên trái
+3. Chọn bảng `todos`
+4. Click **Actions** → **Delete table**
+5. Đánh dấu **Delete all CloudWatch alarms for this table**
+6. Nhập `confirm` và click **Delete**
+
+### Qua CLI
+
 ```bash
 aws dynamodb delete-table --table-name todos
 ```
 
 ---
 
-## 4. Xóa CloudWatch Logs
+## 4. Xóa IAM Roles
+
+1. Truy cập [IAM Console](https://console.aws.amazon.com/iam/)
+2. Click **Roles** ở menu bên trái
+3. Tìm kiếm các role đã tạo trong workshop (ví dụ: tên chứa `todo` hoặc `lambda`)
+4. Chọn từng role và click **Delete**
+5. Nhập tên role để xác nhận, sau đó click **Delete**
+
+---
+
+## 5. Xóa CloudWatch Log Groups
+
+### Qua Console
+
+1. Truy cập [CloudWatch Console](https://console.aws.amazon.com/cloudwatch/)
+2. Click **Log groups** ở menu bên trái
+3. Tìm kiếm `/aws/lambda/`
+4. Chọn 4 log groups:
+   - `/aws/lambda/CreateTodo`
+   - `/aws/lambda/GetTodos`
+   - `/aws/lambda/UpdateTodo`
+   - `/aws/lambda/DeleteTodo`
+5. Click **Actions** → **Delete log group(s)**
+6. Click **Delete** để xác nhận
+
+### Qua CLI
 
 ```bash
 aws logs delete-log-group --log-group-name /aws/lambda/CreateTodo
@@ -62,95 +122,26 @@ aws logs delete-log-group --log-group-name /aws/lambda/DeleteTodo
 
 ---
 
-## 5. Xác minh
+## 6. Xác Minh Đã Dọn Xong
+
+Chạy các lệnh sau để xác nhận tất cả tài nguyên đã được xóa:
 
 ```bash
-aws lambda list-functions --query "length(Functions)" --output text
-aws apigateway get-rest-apis --query "length(items)" --output text
-aws dynamodb list-tables --query "length(TableNames)" --output text
+# Phải trả về danh sách rỗng
+aws lambda list-functions \
+  --query "Functions[?contains(FunctionName,'Todo')].FunctionName"
+
+# Phải trả về danh sách rỗng
+aws dynamodb list-tables \
+  --query "TableNames[?contains(@,'todos')]"
+
+# Phải trả về danh sách rỗng
+aws apigateway get-rest-apis \
+  --query "items[?name=='TodoAPI'].id"
 ```
+
+Tất cả lệnh phải trả về `[]`.
 
 ---
 
-**✅ Hoàn thiện! Chúc mừng khoá học! 🎉**
-date = 2021
-weight = 6
-chapter = false
-pre = "<b>6. </b>"
-+++
-
-Chúng ta sẽ tiến hành các bước sau để xóa các tài nguyên chúng ta đã tạo trong bài thực hành này.
-
-#### Xóa EC2 instance
-
-1. Truy cập [giao diện quản trị dịch vụ EC2](https://console.aws.amazon.com/ec2/v2/home)
-  + Click **Instances**.
-  + Click chọn cả 2 instance **Public Linux Instance** và **Private Windows Instance**. 
-  + Click **Instance state**.
-  + Click **Terminate instance**, sau đó click **Terminate** để xác nhận.
-
-2. Truy cập [giao diện quản trị dịch vụ IAM](https://console.aws.amazon.com/iamv2/home#/home)
-  + Click **Roles**.
-  + Tại ô tìm kiếm , điền **SSM**.
-  + Click chọn **SSM-Role**.
-  + Click **Delete**, sau đó điền tên role **SSM-Role** và click **Delete** để xóa role.
-  
-![Clean](/images/6.clean/001-clean.png)
-
-3. Click **Users**.
-  + Click chọn user **Portfwd**.
-  + Click **Delete**, sau đó điền tên user **Portfwd** và click **Delete** để xóa user.
-
-#### Xóa S3 bucket
-
-1. Truy cập [giao diện quản trị dịch vụ System Manager - Session Manager](https://console.aws.amazon.com/systems-manager/session-manager).
-  + Click tab **Preferences**.
-  + Click **Edit**.
-  + Kéo chuột xuống dưới.
-  + Tại mục **S3 logging**.
-  + Bỏ chọn **Enable** để tắt tính năng logging.
-  + Kéo chuột xuống dưới.
-  + Click **Save**.
-
-2. Truy cập [giao diện quản trị dịch vụ S3](https://s3.console.aws.amazon.com/s3/home)
-  + Click chọn S3 bucket chúng ta đã tạo cho bài thực hành. ( Ví dụ : lab-fcj-bucket-0001 )
-  + Click **Empty**.
-  + Điền **permanently delete**, sau đó click **Empty** để tiến hành xóa object trong bucket.
-  + Click **Exit**.
-
-3. Sau khi xóa hết object trong bucket, click **Delete**
-
-![Clean](/images/6.clean/002-clean.png)
-
-4. Điền tên S3 bucket, sau đó click **Delete bucket** để tiến hành xóa S3 bucket.
-
-![Clean](/images/6.clean/003-clean.png)
-
-#### Xóa các VPC Endpoint
-
-1. Truy cập vào [giao diện quản trị dịch vụ VPC](https://console.aws.amazon.com/vpc/home)
-  + Click **Endpoints**.
-  + Chọn 4 endpoints chúng ta đã tạo cho bài thực hành bao gồm **SSM**, **SSMMESSAGES**, **EC2MESSAGES**, **S3GW**.
-  + Click **Actions**.
-  + Click **Delete VPC endpoints**.
-
-![Clean](/images/6.clean/004-clean.png)
-
-2. Tại ô confirm , điền **delete**.
-  + Click **Delete** để tiến hành xóa các endpoints.
-
-3. Click biểu tượng refresh, kiểm tra tất cả các endpoints đã bị xóa trước khi làm bước tiếp theo.
-
-![Clean](/images/6.clean/005-clean.png)
-
-#### Xóa VPC
-
-1. Truy cập vào [giao diện quản trị dịch vụ VPC](https://console.aws.amazon.com/vpc/home)
-  + Click **Your VPCs**.
-  + Click chọn **Lab VPC**.
-  + Click **Actions**.
-  + Click **Delete VPC**.
-
-2. Tại ô confirm, điền **delete** để xác nhận, click **Delete** để thực hiện xóa **Lab VPC** và các tài nguyên liên quan.
-
-![Clean](/images/6.clean/006-clean.png)
+**Chúc mừng! Bạn đã hoàn thành thành công workshop Serverless Todo API.**

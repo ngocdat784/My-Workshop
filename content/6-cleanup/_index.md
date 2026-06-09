@@ -1,83 +1,147 @@
-+++
-title = "Clean up resources"
-date = 2022
-weight = 6
-chapter = false
-pre = "<b>6. </b>"
-+++
+---
+title: "Clean up Resources"
+date: 2026-05-11
+weight: 6
+chapter: false
+pre: " <b> 6. </b> "
+---
 
-We will take the following steps to delete the resources we created in this exercise.
+# Step 4: Clean up Resources
 
-#### Delete EC2 instance
+{{% notice warning %}}
+Always delete AWS resources after testing to avoid unexpected charges to your account.
+{{% /notice %}}
 
-1. Go to [EC2 service management console](https://console.aws.amazon.com/ec2/v2/home)
-   + Click **Instances**.
-   + Select both **Public Linux Instance** and **Private Windows Instance** instances.
-   + Click **Instance state**.
-   + Click **Terminate instance**, then click **Terminate** to confirm.
+## Cleanup Checklist
 
-2. Go to [IAM service management console](https://console.aws.amazon.com/iamv2/home#/home)
-   + Click **Roles**.
-   + In the search box, enter **SSM**.
-   + Click to select **SSM-Role**.
-   + Click **Delete**, then enter the role name **SSM-Role** and click **Delete** to delete the role.
+- [ ] Delete API Gateway (TodoAPI)
+- [ ] Delete Lambda Functions (CreateTodo, GetTodos, UpdateTodo, DeleteTodo)
+- [ ] Delete DynamoDB Table (todos)
+- [ ] Delete IAM Roles created for Lambda
+- [ ] Delete CloudWatch Log Groups
 
-![Clean](/images/6.clean/001-clean.png)
+---
 
-3. Click **Users**.
-   + Click on user **Portfwd**.
-   + Click **Delete**, then enter the user name **Portfwd** and click **Delete** to delete the user.
+## 1. Delete API Gateway
 
-#### Delete S3 bucket
+### Via Console
 
-1. Access [System Manager - Session Manager service management console](https://console.aws.amazon.com/systems-manager/session-manager).
-   + Click the **Preferences** tab.
-   + Click **Edit**.
-   + Scroll down.
-   + In the section **S3 logging**.
-   + Uncheck **Enable** to disable logging.
-   + Scroll down.
-   + Click **Save**.
+1. Go to [API Gateway Console](https://console.aws.amazon.com/apigateway/)
+2. Click on **TodoAPI**
+3. Click **Actions** → **Delete API**
+4. Type the API name to confirm, then click **Delete**
 
-2. Go to [S3 service management console](https://s3.console.aws.amazon.com/s3/home)
-   + Click on the S3 bucket we created for this lab. (Example: lab-fcj-bucket-0001 )
-   + Click **Empty**.
-   + Enter **permanently delete**, then click **Empty** to proceed to delete the object in the bucket.
-   + Click **Exit**.
+### Via CLI
 
-3. After deleting all objects in the bucket, click **Delete**
+```bash
+API_ID=$(aws apigateway get-rest-apis \
+  --query 'items[?name==`TodoAPI`].id' \
+  --output text)
 
-![Clean](/images/6.clean/002-clean.png)
+aws apigateway delete-rest-api --rest-api-id $API_ID
+```
 
-4. Enter the name of the S3 bucket, then click **Delete bucket** to proceed with deleting the S3 bucket.
+---
 
-![Clean](/images/6.clean/003-clean.png)
+## 2. Delete Lambda Functions
 
-#### Delete VPC Endpoints
+### Via Console
 
-1. Go to [VPC service management console](https://console.aws.amazon.com/vpc/home)
-   + Click **Endpoints**.
-   + Select the 4 endpoints we created for the lab including **SSM**, **SSMMESSAGES**, **EC2MESSAGES**, **S3GW**.
-   + Click **Actions**.
-   + Click **Delete VPC endpoints**.
+1. Go to [Lambda Console](https://console.aws.amazon.com/lambda/)
+2. Tick the checkbox next to each of the 4 functions:
+   - `CreateTodo`
+   - `GetTodos`
+   - `UpdateTodo`
+   - `DeleteTodo`
+3. Click **Actions** → **Delete**
+4. Type `delete` to confirm, then click **Delete**
 
-![Clean](/images/6.clean/004-clean.png)
+### Via CLI
 
-2. In the confirm box, enter **delete**.
-   + Click **Delete** to proceed with deleting endpoints.
+```bash
+aws lambda delete-function --function-name CreateTodo
+aws lambda delete-function --function-name GetTodos
+aws lambda delete-function --function-name UpdateTodo
+aws lambda delete-function --function-name DeleteTodo
+```
 
-3. Click the refresh icon, check that all endpoints have been deleted before proceeding to the next step.
+---
 
-![Clean](/images/6.clean/005-clean.png)
+## 3. Delete DynamoDB Table
 
-#### Delete VPC
+### Via Console
 
-1. Go to [VPC service management console](https://console.aws.amazon.com/vpc/home)
-   + Click **Your VPCs**.
-   + Click on **Lab VPC**.
-   + Click **Actions**.
-   + Click **Delete VPC**.
+1. Go to [DynamoDB Console](https://console.aws.amazon.com/dynamodb/)
+2. Click **Tables** in the left menu
+3. Select the `todos` table
+4. Click **Actions** → **Delete table**
+5. Check **Delete all CloudWatch alarms for this table**
+6. Type `confirm` and click **Delete**
 
-2. In the confirm box, enter **delete** to confirm, click **Delete** to delete **Lab VPC** and related resources.
+### Via CLI
 
-![Clean](/images/6.clean/006-clean.png)
+```bash
+aws dynamodb delete-table --table-name todos
+```
+
+---
+
+## 4. Delete IAM Roles
+
+1. Go to [IAM Console](https://console.aws.amazon.com/iam/)
+2. Click **Roles** in the left menu
+3. Search for roles created during the workshop (e.g., names containing `todo` or `lambda`)
+4. Select each role and click **Delete**
+5. Type the role name to confirm, then click **Delete**
+
+---
+
+## 5. Delete CloudWatch Log Groups
+
+### Via Console
+
+1. Go to [CloudWatch Console](https://console.aws.amazon.com/cloudwatch/)
+2. Click **Log groups** in the left menu
+3. Search for `/aws/lambda/`
+4. Select the 4 log groups:
+   - `/aws/lambda/CreateTodo`
+   - `/aws/lambda/GetTodos`
+   - `/aws/lambda/UpdateTodo`
+   - `/aws/lambda/DeleteTodo`
+5. Click **Actions** → **Delete log group(s)**
+6. Click **Delete** to confirm
+
+### Via CLI
+
+```bash
+aws logs delete-log-group --log-group-name /aws/lambda/CreateTodo
+aws logs delete-log-group --log-group-name /aws/lambda/GetTodos
+aws logs delete-log-group --log-group-name /aws/lambda/UpdateTodo
+aws logs delete-log-group --log-group-name /aws/lambda/DeleteTodo
+```
+
+---
+
+## 6. Verify Cleanup
+
+Run the following to confirm all resources have been removed:
+
+```bash
+# Should return empty list
+aws lambda list-functions \
+  --query "Functions[?contains(FunctionName,'Todo')].FunctionName"
+
+# Should return empty list
+aws dynamodb list-tables \
+  --query "TableNames[?contains(@,'todos')]"
+
+# Should return empty list
+aws apigateway get-rest-apis \
+  --query "items[?name=='TodoAPI'].id"
+```
+
+All commands should return `[]`.
+
+---
+
+**Congratulations! You have successfully completed the Serverless Todo API workshop.**
