@@ -3,8 +3,7 @@ title: "Đề Xuất Dự Án"
 weight: 1
 ---
 
-# Serverless Todo API - Đề Xuất Dự Án
-
+# Serverless Todo API 
 ---
 
 ## 1. Tổng quan Dự án

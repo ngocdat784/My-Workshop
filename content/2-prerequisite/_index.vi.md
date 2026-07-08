@@ -6,7 +6,6 @@ chapter : false
 pre : " <b> 2. </b> "
 ---
 
-# Điều kiện tiên quyết
 
 ## Thiết lập Tài khoản AWS
 

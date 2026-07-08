@@ -56,13 +56,6 @@ Tôi đã nghiên cứu và chia sẻ 3 bài viết liên quan AWS trên cộng 
 
 ---
 
-## Tác Động
 
-**Người Tiếp Cận**: 500+ thành viên AWS Study Group  
-**Tương Tác**: 50+ bình luận mỗi bài  
-**Phản Hồi**: "Rất thực tế!"  
-**Chia Sẻ**: 30+ lần
-
----
 
 **✅ 3 bài blog hoàn thành**

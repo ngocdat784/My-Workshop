@@ -3,7 +3,6 @@ title: "Tự Đánh Giá"
 weight: 1
 ---
 
-# Tự Đánh Giá
 
 ---
 
@@ -138,5 +137,5 @@ weight: 1
 
 ---
 
-**Đánh Giá Ngày**: 17/07/2026  
+**Đánh Giá Ngày**: 10/07/2026  
 **Kết Luận**: Sẵn sàng cho vị trí AWS với học tập liên tục ✅

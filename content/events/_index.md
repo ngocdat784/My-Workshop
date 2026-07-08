@@ -1,127 +1,79 @@
 ---
-title: "Events Participated"
+title: "Events Participated "
 weight: 1
 ---
 
-# Events Participated
+
 
 ---
 
-## Event 1: AWS Study Group Onboarding Webinar
+## Event 1: AWS Study Group Onboarding
 
-**Date**: April 17, 2026  
-**Time**: 2 hours  
-**Location**: Online (AWS Study Group)  
-**Role**: Participant  
+Date : May 09, 2026 
+Time : 3 hours 
+Location : Offline  
+Role : Audience 
 
-### Content
-- Introduction to AWS Study Group community
-- Overview of FCJ program
-- AWS fundamentals overview
-- Q&A session with AWS experts
-
-### Key Learnings
-- Understood the importance of hands-on practice
-- Met fellow interns and mentors
-- Learned about available resources (documentation, AWS CLI)
-- Motivation for the 12-week journey
-
-### Personal Contribution
-- Active participation in Q&A
-- Shared previous cloud experience
-- Helped set up AWS CLI for peers
+### Content 
+- Addicted to learning like you are addicted to social media
+- Automated Prompt Engineering: Enhancing LLM Output Quality
+- AI Ready Freshers Skill and Mindset in the AI Era
+- The new era of Context Engineering: BMAD Method brings Agile & AI teams into your IDE
 
 ---
 
-## Event 2: AWS Technical Workshop - Serverless Day
+## Event 2: AWS Community Meetup & AI/Cloud Tech Talks
 
-**Date**: May 22, 2026  
-**Time**: 4 hours  
-**Location**: HUTECH Campus (In-person)  
-**Role**: Active Participant + Presenter
+Date : June 27, 2026 
+Time : 3 hours 
+Location : Offline  
+Role : Audience 
 
-### Content
-- Lambda function optimization
-- DynamoDB design patterns
-- API Gateway best practices
-- Real-world serverless case studies
+### Content / Nội Dung
+- Deep Response Engine: From Detection to Autonomous Resolution
+  - The complexity wall in modern cloud operations
+  - Shift from alert-driven to action-driven systems
+  - Deep Response Engine architecture overview
+  - Live demo of autonomous incident response
+  - Business impact: cost reduction and zero-downtime operations
 
-### Key Learnings
-- Advanced Lambda optimization techniques
-- DynamoDB query optimization
-- Cost estimation methodologies
-- Industry practices and patterns
+- Voice Agents: Building Human-Like AI Conversations at Scale
+  - Evolution from IVR and chatbots to AI voice agents
+  - Key challenges: latency, accuracy, and natural interaction
+  - Amazon Nova Sonic and speech-to-speech foundation model
+  - Architecture: telephony, streaming, Bedrock, MCP tools
+  - Enterprise use cases, best practices, and live demo
 
-### Personal Contribution
-- Presented Todo API project to attendees
-- Answered technical questions from peers
-- Shared code snippets and best practices
-- Received positive feedback on implementation
+- AWS DevOps Agent: Your Always-Available Operations Teammate
+  - Overview of AWS DevOps Agent
+  - Reducing MTTD and MTTR with AI-driven operations
+  - Supporting multi-cloud and hybrid environments
+  - Bedrock AgentCore and multi-agent reasoning approach
+  - Real-world use cases and ECS demo walkthrough
 
----
+- AI-Powered Productivity: Workforce Planning For Enterprise
+  - HR transformation challenges in modern enterprises
+  - Overview of Amazon Quick and its HR capabilities
+  - Accelerating HR operations with automation
+  - Workforce analytics and data-driven insights
+  - Strategic workforce planning for enterprise decision-making
 
-## Event 3: AWS Study Group Community Meetup
-
-**Date**: July 10, 2026  
-**Time**: 3 hours  
-**Location**: Ho Chi Minh City (In-person)  
-**Role**: Final Presenter + Mentor
-
-### Content
-- Internship experience sharing
-- Project showcase and Q&A
-- Interview tips with AWS recruiters
-- Networking with other interns and AWS professionals
-
-### Key Learnings
-- How to articulate technical concepts to non-technical audience
-- Importance of clear documentation
-- Career paths in AWS and cloud computing
-- Interview preparation strategies
-
-### Personal Contribution
-- Presented final Serverless Todo API project
-- Demonstrated live deployment and testing
-- Answered questions about workshop content
-- Mentored newer interns on best practices
-- Shared interview experience with peers
+- Building Secure Private MCP Connection with Amazon Quick
+  - Introduction to Amazon Quick as an AI assistant platform
+  - MCP (Model Context Protocol) and its role in extensibility
+  - Security challenges in MCP-based integrations
+  - Configuring Amazon Quick VPC private connectivity
+  - Demo and real-world implementation insights
 
 ---
 
-## Event Summary
-
-| Event | Date | Duration | Role | Impact |
-|-------|------|----------|------|--------|
-| Onboarding Webinar | Apr 17 | 2hr | Participant | Foundation |
-| Serverless Workshop | May 22 | 4hr | Participant + Presenter | Skill Development |
-| Community Meetup | Jul 10 | 3hr | Final Presenter + Mentor | Knowledge Sharing |
+## Event Summary 
+| Event  | Date  | Duration  | Role  |
+|-------|------|----------|------|
+| AWS Study Group Onboarding | May 09 | 3 hours  | Audience  |
+| AWS Community Meetup & AI/Cloud Tech Talks | June 27  | 3 hours  | Audience |
 
 ---
 
-## Skills Developed Through Events
-
-✅ **Technical Communication** - Presenting complex concepts clearly  
-✅ **Networking** - Built relationships with AWS professionals  
-✅ **Public Speaking** - Presented in front of 100+ people  
-✅ **Mentoring** - Helped junior interns with their projects  
-✅ **Leadership** - Led discussions and technical sessions  
-
----
-
-## Feedback Received
-
-- "Your Todo API implementation is a great example of best practices" - AWS Technical Lead
-- "Clear explanation and good code organization" - Community Members
-- "Excellent mentor, very helpful and patient" - Newer Interns
-- "Would like to see more projects like this" - AWS Study Group Organizers
-
----
-
-**Total Events Attended: 3**  
-**Total Hours: ~9 hours**  
-**Presentations Given: 2**  
-**People Mentored: 5+**
-
----
-
-**Events Participation Status**: ✅ Exceeded Minimum Requirements
+Total Events : 2  
+Total Hours : 6 hours 

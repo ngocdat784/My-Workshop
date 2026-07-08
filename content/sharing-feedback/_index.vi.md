@@ -3,7 +3,6 @@ title: "Chia sẻ & Phản hồi"
 weight: 1
 ---
 
-# Chia sẻ và Phản hồi
 
 ## Cảm nhận về chương trình
 

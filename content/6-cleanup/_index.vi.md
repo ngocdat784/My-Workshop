@@ -144,4 +144,3 @@ Tất cả lệnh phải trả về `[]`.
 
 ---
 
-**Chúc mừng! Bạn đã hoàn thành thành công workshop Serverless Todo API.**

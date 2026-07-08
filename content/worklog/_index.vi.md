@@ -1,11 +1,10 @@
 ---
-title: "Nhật ký làm việc"
+title: "Nhật ký làm việc 12 tuần"
 weight: 2
 ---
 
-# Nhật Ký Làm Việc 12 Tuần
 ## Chương Trình Thực Tập First Cloud Journey – AWS
-**Thời gian:** 17/04/2026 – 19/07/2026
+**Thời gian:** 17/04/2026 – 10/07/2026
 
 ---
 

@@ -5,7 +5,6 @@ weight : 1
 chapter : false
 ---
 
-# Serverless Todo API trên AWS
 
 ### Tổng quan
 
