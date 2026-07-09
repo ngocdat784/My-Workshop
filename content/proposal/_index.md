@@ -19,6 +19,7 @@ weight: 1
 A modern, scalable Todo management system built entirely on AWS serverless services. Users can create, read, update, and delete todo items through a REST API, perfect for learning AWS architecture and best practices.
 
 ![alt text](<Screenshot 2026-07-08 170037-1.png>) ![alt text](<Screenshot 2026-07-08 165309-1.png>) ![alt text](<Screenshot 2026-07-08 165926-1.png>) ![alt text](<Screenshot 2026-07-08 170022-1.png>)
+![alt text](image.png)
 
 ---
 

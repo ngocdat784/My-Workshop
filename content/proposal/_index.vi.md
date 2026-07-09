@@ -18,7 +18,7 @@ weight: 1
 Một hệ thống quản lý Todo hiện đại, có thể mở rộng được xây dựng hoàn toàn trên các dịch vụ serverless của AWS.
 
 ![alt text](<Screenshot 2026-07-08 170037.png>) ![alt text](<Screenshot 2026-07-08 165309.png>) ![alt text](<Screenshot 2026-07-08 165926.png>) ![alt text](<Screenshot 2026-07-08 170022.png>)
-
+![alt text](image-1.png)
 ---
 
 ## 2. Vấn đề Cần Giải Quyết
