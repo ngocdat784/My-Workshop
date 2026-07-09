@@ -13,5 +13,5 @@ weight: 1
 - **Công ty thực tập**: AWS (Amazon Web Services)
 - **Vị trí thực tập**: Intern
 - **Thời gian thực tập**: 17/04/2026 – 10/07/2026
-- **Thời gian thực tập**: 17/04/2026 – 10/07/2026
 
+![alt text](image.png)
