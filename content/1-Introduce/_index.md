@@ -1,86 +1,96 @@
 ---
-title : "Introduction"
-date: 2026-05-11 
-weight : 1 
+title : "Getting Started"
+date: 2026-05-11
+weight : 1
 chapter : false
-pre : " <b> 1. </b> "
+pre : "<b> 1. </b>"
 ---
 
-# Serverless Todo API on AWS
+# Building a Serverless Todo API with AWS
 
-## Overview
+## Introduction
 
-In this workshop, you will build a **Serverless Todo Application API** using AWS services. This is a practical exercise that demonstrates how to create a modern, scalable backend without managing servers.
+This workshop walks you through the process of developing a **Serverless Todo API** by leveraging several core AWS services. Throughout the hands-on exercises, you will learn how to build a reliable backend application without provisioning or maintaining traditional servers.
 
-### What You'll Build
+### Project Objectives
 
-A complete RESTful API for a Todo application where users can:
-- Create new todo items
-- Retrieve all todos
-- Update todo status
-- Delete todos
+By the end of this workshop, you will have created a RESTful API capable of managing todo tasks. The application will support the following features:
 
-All operations are persisted in a database and accessed through HTTP endpoints.
+- Add new todo records
+- Display existing todo items
+- Modify task information or completion status
+- Remove unnecessary tasks
 
-### Real-World Use Cases
+Each request is processed through HTTP endpoints, while all data is stored securely inside a cloud database.
 
-This architecture is used for:
-- **Microservices**: Building independent, scalable services
-- **Content Management Systems**: APIs for blogs, newsletters
-- **Mobile Backends**: Serving data to mobile applications
-- **IoT Dashboards**: Collecting and serving sensor data
-- **E-commerce**: Product catalogs, order management
+### Practical Applications
+
+The architecture introduced in this workshop is commonly adopted in many production environments, including:
+
+- **Microservice-based Applications**: Independent and scalable backend components
+- **Content Platforms**: APIs supporting articles, blogs, and publishing systems
+- **Mobile Services**: Backend APIs for Android and iOS applications
+- **IoT Solutions**: Managing and presenting data collected from connected devices
+- **Online Retail Systems**: Handling products, inventory, and customer orders
 
 ---
 
-## Architecture at a Glance
+## Solution Architecture
+
 
 ```
-Client (Postman/Browser)
-    ↓
-API Gateway (HTTP Endpoint)
-    ↓
-Lambda Functions (Business Logic)
-    ↓
-DynamoDB (Data Storage)
+User (Browser/Postman)
+│
+▼
+Amazon API Gateway
+│
+▼
+AWS Lambda Functions
+│
+▼
+Amazon DynamoDB
 ```
 
-### 3 Key AWS Services
 
-1. **API Gateway**: Creates REST API endpoints that clients can call
-2. **Lambda**: Serverless functions that handle request logic (CRUD operations)
-3. **DynamoDB**: NoSQL database for storing todo items
+### Core AWS Components
 
----
-
-## Why This Stack?
-
-| Service | Why Use It |
-|---------|-----------|
-| **API Gateway** | Provides public HTTP endpoints, handles routing, manages traffic |
-| **Lambda** | Pay-per-use pricing, automatic scaling, no server management |
-| **DynamoDB** | Fully managed NoSQL database, auto-scaling, millisecond latency |
+1. **Amazon API Gateway** – Exposes HTTP endpoints and forwards client requests.
+2. **AWS Lambda** – Executes backend logic for Create, Read, Update, and Delete operations.
+3. **Amazon DynamoDB** – Stores todo data using a managed NoSQL database service.
 
 ---
 
-## What You'll Learn
+## Why Use These AWS Services?
 
-- ✅ Create a DynamoDB table with proper key schema
-- ✅ Write Python Lambda functions for CRUD operations
-- ✅ Set up API Gateway to route HTTP requests to Lambda
-- ✅ Test API endpoints using Postman
-- ✅ Monitor with CloudWatch Logs
-- ✅ Implement IAM roles and Least Privilege security
-- ✅ Deploy using Infrastructure as Code (CloudFormation)
-- ✅ Clean up resources properly
+| AWS Service | Purpose |
+|-------------|---------|
+| **Amazon API Gateway** | Publishes REST endpoints, routes requests, and manages incoming traffic |
+| **AWS Lambda** | Runs application logic without managing infrastructure while automatically scaling based on demand |
+| **Amazon DynamoDB** | Delivers a highly available NoSQL database with fast performance and automatic scalability |
 
 ---
 
-## Expected Outcomes
+## Learning Objectives
 
-After this workshop, you will have:
-- A fully functional Serverless Todo API on AWS
-- Understanding of serverless architecture benefits
-- Hands-on experience with 3 AWS core services
-- Knowledge of REST API design principles
-- A working, scalable application 
+During this workshop, you will learn how to:
+
+- Create and configure a DynamoDB table using an appropriate primary key.
+- Develop Lambda functions in Python to perform CRUD operations.
+- Connect API Gateway with Lambda to expose RESTful endpoints.
+- Validate API functionality using Postman.
+- Monitor execution logs through Amazon CloudWatch.
+- Apply IAM roles following the Principle of Least Privilege.
+- Deploy cloud resources using AWS CloudFormation.
+- Remove AWS resources safely after completing the project.
+
+---
+
+## Expected Results
+
+After finishing this workshop, you should be able to:
+
+- Build a complete Serverless Todo API running on AWS.
+- Understand the advantages of serverless application architecture.
+- Gain practical experience with Amazon API Gateway, AWS Lambda, and Amazon DynamoDB.
+- Design and implement RESTful APIs following common best practices.
+- Deploy a scalable cloud-native application that can be extended for future development.

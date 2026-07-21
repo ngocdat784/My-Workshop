@@ -1,66 +1,73 @@
 ---
-title: "Tạo DynamoDB Table"
+title: "Tạo bảng DynamoDB"
 date: 2026-05-11
 weight: 3
 chapter: false
-pre: " <b> 3. </b> "
+pre: "<b> 3. </b>"
 ---
 
-# Bước 1: Tạo DynamoDB Table
+# Bước 1: Tạo bảng DynamoDB
 
-## Tổng quan
+## Giới thiệu
 
-Amazon DynamoDB là dịch vụ cơ sở dữ liệu NoSQL serverless được quản lý hoàn toàn, với hiệu suất hàng chục mili giây ở mọi quy mô. Trong bước này, chúng ta sẽ tạo bảng `todos` để lưu trữ tất cả các mục todo cho API.
-
----
-
-## Cấu trúc Bảng
-
-| Thuộc tính | Kiểu | Vai trò |
-|---|---|---|
-| `todoId` | String | Partition Key (Khóa chính) — UUID tự động sinh |
-| `title` | String | Tiêu đề todo |
-| `description` | String | Nội dung mô tả (tùy chọn) |
-| `status` | String | `pending` hoặc `completed` |
-| `createdAt` | Number | Unix timestamp (đặt khi tạo) |
-| `updatedAt` | Number | Unix timestamp (cập nhật mỗi lần thay đổi) |
+Amazon DynamoDB là dịch vụ cơ sở dữ liệu NoSQL được AWS quản lý hoàn toàn, có khả năng mở rộng linh hoạt và đáp ứng truy vấn với độ trễ rất thấp. Trong phần này, bạn sẽ tạo bảng **todos**, nơi lưu trữ toàn bộ dữ liệu của ứng dụng Todo API.
 
 ---
 
-## Tạo Bảng qua AWS Console
+## Cấu trúc bảng dữ liệu
 
-### Bước 1: Mở DynamoDB Console
-
-1. Đăng nhập vào [AWS Management Console](https://console.aws.amazon.com/)
-2. Trong thanh tìm kiếm, nhập **DynamoDB** và click vào dịch vụ
-3. Ở menu bên trái, click **Tables**
-
-### Bước 2: Tạo Bảng
-
-1. Click **Create table**
-2. Điền thông tin bảng:
-   - **Table name**: `todos`
-   - **Partition key**: `todoId` — kiểu **String**
-   - Để trống **Sort key**
-3. Trong **Table settings**, chọn **Customize settings**
-4. Trong **Read/write capacity settings**, chọn **On-demand**
-   - On-demand chỉ tính phí cho lượng sử dụng thực tế, không cần lên kế hoạch dung lượng
-5. Giữ nguyên các cài đặt khác
-6. Click **Create table**
-
-### Bước 3: Xác Minh Bảng
-
-1. Chờ trạng thái chuyển từ **Creating** → **Active** (thường dưới 30 giây)
-2. Click vào bảng `todos` để xem chi tiết
-3. Xác nhận:
-   - **Table name**: `todos`
-   - **Partition key**: `todoId (S)`
-   - **Status**: Active
-   - **Billing mode**: On-demand
+| Thuộc tính | Kiểu dữ liệu | Mô tả |
+|------------|-------------|------|
+| `todoId` | String | Khóa chính (Partition Key), sử dụng UUID duy nhất |
+| `title` | String | Tiêu đề của công việc |
+| `description` | String | Nội dung mô tả (không bắt buộc) |
+| `status` | String | Trạng thái công việc (`pending` hoặc `completed`) |
+| `createdAt` | Number | Thời điểm tạo dữ liệu (Unix Timestamp) |
+| `updatedAt` | Number | Thời điểm cập nhật gần nhất (Unix Timestamp) |
 
 ---
 
-## Tạo Bảng qua AWS CLI
+## Tạo bảng bằng AWS Management Console
+
+### Bước 1 — Truy cập DynamoDB
+
+1. Đăng nhập vào AWS Management Console.
+2. Tìm kiếm **DynamoDB** trên thanh tìm kiếm.
+3. Chọn mục **Tables** trong menu bên trái.
+
+### Bước 2 — Khởi tạo bảng
+
+Nhấn **Create table**, sau đó nhập các thông tin sau:
+
+- **Table name:** `todos`
+- **Partition key:** `todoId`
+- **Kiểu dữ liệu:** String
+
+Không cần khai báo **Sort Key**.
+
+Tiếp theo:
+
+- Mở phần **Table Settings** và chọn **Customize Settings**.
+- Trong mục **Capacity Mode**, chọn **On-demand** để DynamoDB tự động điều chỉnh tài nguyên theo lưu lượng sử dụng.
+- Giữ nguyên các thiết lập còn lại.
+- Nhấn **Create Table** để hoàn tất.
+
+### Bước 3 — Kiểm tra bảng
+
+Đợi trạng thái của bảng chuyển sang **Active**.
+
+Kiểm tra các thông tin sau:
+
+- Tên bảng: `todos`
+- Partition Key: `todoId`
+- Billing Mode: On-demand
+- Trạng thái: Active
+
+---
+
+## Tạo bảng bằng AWS CLI
+
+Thực hiện lệnh sau:
 
 ```bash
 aws dynamodb create-table \
@@ -71,7 +78,7 @@ aws dynamodb create-table \
   --region us-east-1
 ```
 
-Kiểm tra bảng đã Active chưa:
+Kiểm tra trạng thái của bảng:
 
 ```bash
 aws dynamodb describe-table \
@@ -88,41 +95,41 @@ ACTIVE
 
 ---
 
-## Kiểm Tra Bằng Item Mẫu (Tùy Chọn)
+## Thêm dữ liệu mẫu (Tùy chọn)
 
-Bạn có thể thêm một item thử để xác minh bảng hoạt động:
+Để kiểm tra bảng đã hoạt động chính xác hay chưa, bạn có thể thêm một bản ghi thử nghiệm.
 
 ```bash
 aws dynamodb put-item \
   --table-name todos \
   --item '{
-    "todoId":     {"S": "test-001"},
-    "title":      {"S": "Item thử nghiệm"},
-    "description":{"S": "Kiểm tra DynamoDB hoạt động"},
-    "status":     {"S": "pending"},
-    "createdAt":  {"N": "1700000000"},
-    "updatedAt":  {"N": "1700000000"}
-  }'
+    "todoId":{"S":"test-001"},
+    "title":{"S":"Test Item"},
+    "description":{"S":"Testing DynamoDB"},
+    "status":{"S":"pending"},
+    "createdAt":{"N":"1700000000"},
+    "updatedAt":{"N":"1700000000"}
+}'
 ```
 
-Đọc lại item:
+Đọc lại dữ liệu vừa thêm:
 
 ```bash
 aws dynamodb get-item \
   --table-name todos \
-  --key '{"todoId": {"S": "test-001"}}'
+  --key '{"todoId":{"S":"test-001"}}'
 ```
 
-Xóa item thử trước khi tiếp tục:
+Sau khi kiểm tra xong, hãy xóa dữ liệu thử:
 
 ```bash
 aws dynamodb delete-item \
   --table-name todos \
-  --key '{"todoId": {"S": "test-001"}}'
+  --key '{"todoId":{"S":"test-001"}}'
 ```
 
 ---
 
-## Bước Tiếp Theo
+## Bước tiếp theo
 
-Tiếp tục với **Bước 2: Tạo Lambda Functions** để viết logic CRUD đọc và ghi vào bảng này.
+Sau khi tạo thành công bảng DynamoDB, hãy chuyển sang **Bước 2: Xây dựng các hàm AWS Lambda** để triển khai các chức năng CRUD cho Serverless Todo API.

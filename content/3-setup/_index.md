@@ -1,66 +1,73 @@
 ---
-title: "Create DynamoDB Table"
+title: "Configure DynamoDB Table"
 date: 2026-05-11
 weight: 3
 chapter: false
-pre: " <b> 3. </b> "
+pre: "<b> 3. </b>"
 ---
 
-# Step 1: Create DynamoDB Table
+# Step 1: Configure the DynamoDB Table
 
-## Overview
+## Introduction
 
-Amazon DynamoDB is a fully managed, serverless NoSQL database with single-digit millisecond performance at any scale. In this step, we create the `todos` table that will store all todo items for our API.
-
----
-
-## Table Schema
-
-| Attribute | Type | Role |
-|---|---|---|
-| `todoId` | String | Partition Key (Primary Key) — auto-generated UUID |
-| `title` | String | Todo title |
-| `description` | String | Optional detail text |
-| `status` | String | `pending` or `completed` |
-| `createdAt` | Number | Unix timestamp (set on creation) |
-| `updatedAt` | Number | Unix timestamp (updated on every change) |
+Amazon DynamoDB is a fully managed NoSQL database service designed for high availability and low-latency performance. In this section, you will create a table named **todos**, which will serve as the primary data store for the Serverless Todo API.
 
 ---
 
-## Create Table via AWS Console
+## Table Structure
 
-### Step 1: Open DynamoDB Console
-
-1. Sign in to the [AWS Management Console](https://console.aws.amazon.com/)
-2. In the top search bar, type **DynamoDB** and click the service
-3. In the left menu, click **Tables**
-
-### Step 2: Create the Table
-
-1. Click **Create table**
-2. Fill in the table details:
-   - **Table name**: `todos`
-   - **Partition key**: `todoId` — type **String**
-   - Leave **Sort key** empty
-3. Under **Table settings**, select **Customize settings**
-4. Under **Read/write capacity settings**, choose **On-demand**
-   - On-demand charges only for what you use — no capacity planning needed
-5. Leave all other settings as default
-6. Click **Create table**
-
-### Step 3: Verify the Table
-
-1. Wait for the status to change from **Creating** → **Active** (usually < 30 seconds)
-2. Click the `todos` table to open its details
-3. Confirm the following:
-   - **Table name**: `todos`
-   - **Partition key**: `todoId (S)`
-   - **Status**: Active
-   - **Billing mode**: On-demand
+| Attribute | Data Type | Description |
+|-----------|-----------|-------------|
+| `todoId` | String | Primary key generated as a unique UUID |
+| `title` | String | Title of the todo task |
+| `description` | String | Additional details about the task (optional) |
+| `status` | String | Current status (`pending` or `completed`) |
+| `createdAt` | Number | Unix timestamp when the item is created |
+| `updatedAt` | Number | Unix timestamp updated whenever the item changes |
 
 ---
 
-## Create Table via AWS CLI
+## Creating the Table from the AWS Console
+
+### Step 1 — Open Amazon DynamoDB
+
+1. Log in to the AWS Management Console.
+2. Search for **DynamoDB** using the AWS search bar.
+3. Open the **Tables** page from the navigation menu.
+
+### Step 2 — Configure the Table
+
+Select **Create table**, then provide the following information:
+
+- **Table Name:** `todos`
+- **Partition Key:** `todoId`
+- **Data Type:** String
+
+Keep the **Sort Key** empty.
+
+Next,
+
+- Open **Table Settings** and choose **Customize Settings**.
+- Under **Capacity Mode**, select **On-demand** so that DynamoDB automatically scales based on traffic.
+- Leave the remaining settings unchanged.
+- Click **Create Table**.
+
+### Step 3 — Confirm Table Creation
+
+Wait until the table status changes to **Active**.
+
+Verify the following information:
+
+- Table Name: `todos`
+- Partition Key: `todoId`
+- Billing Mode: On-demand
+- Table Status: Active
+
+---
+
+## Creating the Table with AWS CLI
+
+Execute the following command:
 
 ```bash
 aws dynamodb create-table \
@@ -71,7 +78,7 @@ aws dynamodb create-table \
   --region us-east-1
 ```
 
-Verify the table is active:
+To verify the table status:
 
 ```bash
 aws dynamodb describe-table \
@@ -80,7 +87,7 @@ aws dynamodb describe-table \
   --output text
 ```
 
-Expected output:
+Expected result:
 
 ```
 ACTIVE
@@ -88,41 +95,41 @@ ACTIVE
 
 ---
 
-## Test with a Sample Item (Optional)
+## Insert a Sample Record (Optional)
 
-You can insert a test item directly to verify the table works:
+You may insert a sample item to confirm the table is functioning correctly.
 
 ```bash
 aws dynamodb put-item \
   --table-name todos \
   --item '{
-    "todoId":     {"S": "test-001"},
-    "title":      {"S": "Test item"},
-    "description":{"S": "Verify DynamoDB works"},
-    "status":     {"S": "pending"},
-    "createdAt":  {"N": "1700000000"},
-    "updatedAt":  {"N": "1700000000"}
-  }'
+    "todoId":{"S":"test-001"},
+    "title":{"S":"Test Item"},
+    "description":{"S":"Testing DynamoDB"},
+    "status":{"S":"pending"},
+    "createdAt":{"N":"1700000000"},
+    "updatedAt":{"N":"1700000000"}
+}'
 ```
 
-Then read it back:
+Retrieve the inserted record:
 
 ```bash
 aws dynamodb get-item \
   --table-name todos \
-  --key '{"todoId": {"S": "test-001"}}'
+  --key '{"todoId":{"S":"test-001"}}'
 ```
 
-Delete the test item before continuing:
+After verification, remove the sample item:
 
 ```bash
 aws dynamodb delete-item \
   --table-name todos \
-  --key '{"todoId": {"S": "test-001"}}'
+  --key '{"todoId":{"S":"test-001"}}'
 ```
 
 ---
 
-## Next Step
+## Continue to the Next Section
 
-Proceed to **Step 2: Create Lambda Functions** to write the CRUD business logic that reads from and writes to this table.
+Once the DynamoDB table has been created successfully, proceed to **Step 2: Develop Lambda Functions**, where you will implement the CRUD logic for the Todo API.

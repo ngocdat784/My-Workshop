@@ -1,101 +1,146 @@
 ---
-title : "Điều kiện tiên quyết"
+title : "Điều kiện chuẩn bị"
 date: 2026-05-11
 weight : 2
 chapter : false
-pre : " <b> 2. </b> "
+pre : "<b> 2. </b>"
 ---
 
+# Điều kiện chuẩn bị
 
-## Thiết lập Tài khoản AWS
+## Chuẩn bị tài khoản AWS
 
-Bạn cần một tài khoản AWS có quyền hạn thích hợp để tạo các tài nguyên API Gateway, Lambda, và DynamoDB.
+Trước khi bắt đầu workshop, bạn cần có một tài khoản AWS với đầy đủ quyền để triển khai và quản lý các dịch vụ sẽ sử dụng trong bài thực hành.
 
-### Quyền hạn bắt buộc
-- API Gateway: Tạo và quản lý REST API
-- Lambda: Tạo và quản lý các hàm
-- DynamoDB: Tạo và quản lý bảng
-- IAM: Tạo vai trò và chính sách
-- CloudWatch: Xem logs
+### Quyền truy cập cần có
+
+- **Amazon API Gateway**: Tạo và quản lý các REST API.
+- **AWS Lambda**: Tạo, cập nhật và quản lý các hàm Lambda.
+- **Amazon DynamoDB**: Tạo và thao tác với các bảng dữ liệu.
+- **AWS IAM**: Quản lý Role và Policy phục vụ phân quyền.
+- **Amazon CloudWatch**: Theo dõi log và giám sát quá trình thực thi.
 
 {{% notice info %}}
-Nếu bạn chưa có tài khoản AWS, hãy đăng ký [AWS Free Tier](https://aws.amazon.com/free/) để bắt đầu. Phần lớn workshop này nằm trong giới hạn free tier.
+Nếu bạn chưa sở hữu tài khoản AWS, hãy đăng ký **AWS Free Tier** để bắt đầu. Phần lớn nội dung trong workshop này đều nằm trong giới hạn miễn phí của AWS đối với các tài khoản đủ điều kiện.
 {{% /notice %}}
 
 ---
 
-## Yêu cầu địa phương
+## Chuẩn bị môi trường làm việc
 
-### Bắt buộc
-- **AWS CLI**: Phiên bản 2.x trở lên
-  - [Hướng dẫn cài đặt](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-  - Kiểm tra: `aws --version`
-  
-- **AWS Account Credentials**: Được cấu hình cục bộ
-  - Chạy: `aws configure`
-  - Nhập AWS Access Key ID và Secret Access Key
-  - Khu vực mặc định: `us-east-1` (được khuyến bao)
+### Thành phần bắt buộc
 
-- **Text Editor hoặc IDE**: VS Code, PyCharm, hoặc tương tự
+- **AWS CLI (phiên bản 2.x trở lên)**
+  - Hướng dẫn cài đặt: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+  - Kiểm tra phiên bản:
 
-### Tùy chọn nhưng được khuyên dùng
-- **Python 3.8+**: Để kiểm tra các hàm Lambda cục bộ
-- **Postman** hoặc **curl**: Để kiểm tra các điểm cuối API
-- **git**: Để kiểm soát phiên bản
+```bash
+aws --version
+```
 
----
+- **Cấu hình thông tin đăng nhập AWS**
 
-## Dịch vụ AWS được sử dụng trong Workshop
+Sau khi cài đặt AWS CLI, thực hiện:
 
-1. **API Gateway** - Các điểm cuối REST API
-2. **Lambda** - Máy tính serverless cho logic kinh doanh
-3. **DynamoDB** - Cơ sở dữ liệu NoSQL để lưu trữ dữ liệu
+```bash
+aws configure
+```
 
-### Dịch vụ bổ sung
-- **IAM**: Để kiểm soát truy cập và bảo mật
-- **CloudWatch**: Để giám sát và logs
-- **AWS CloudFormation** (tùy chọn): Cho Infrastructure as Code
+Sau đó nhập:
 
----
+- AWS Access Key ID
+- AWS Secret Access Key
+- Default Region (khuyến nghị: `us-east-1`)
+- Default Output Format (có thể để trống hoặc chọn `json`)
 
-## Chi phí dự kiến
+- **Trình soạn thảo mã nguồn**
 
-Workshop này sẽ **tốn kém dưới $1 USD** nếu:
-- Hoàn thành trong 2-3 giờ
-- Tài nguyên bị xóa sau khi hoàn thành
-- Bạn nằm trong giới hạn AWS Free Tier
+Có thể sử dụng một trong các công cụ như:
 
-### Phạm vi miễn phí (12 tháng)
-- Lambda: 1.000.000 yêu cầu miễn phí/tháng
-- DynamoDB: 25 GB lưu trữ, 25 RCU, 25 WCU
-- API Gateway: 1.000.000 lệnh gọi API/tháng (năm đầu tiên)
+- Visual Studio Code
+- PyCharm
+- IntelliJ IDEA
+- Hoặc bất kỳ IDE nào bạn quen thuộc
 
-**Quan trọng**: Luôn xóa tài nguyên sau khi kiểm tra để tránh các khoản phí không mong muốn.
+### Thành phần khuyến nghị
+
+Để việc thực hành thuận lợi hơn, bạn nên cài đặt thêm:
+
+- **Python 3.8 hoặc mới hơn** để kiểm thử Lambda trên máy cục bộ.
+- **Postman** hoặc **curl** để gửi và kiểm tra các HTTP Request.
+- **Git** nhằm quản lý mã nguồn và theo dõi lịch sử thay đổi.
 
 ---
 
-## Thời gian cần thiết
+## Các dịch vụ AWS sử dụng trong workshop
 
-**Tổng cộng: 2-3 giờ**
-- Thiết lập & Điều kiện tiên quyết: 15-20 phút
-- Tạo bảng DynamoDB: 10 phút
-- Viết Lambda Functions: 40-50 phút
-- Thiết lập API Gateway: 30-40 phút
-- Kiểm tra & Gỡ lỗi: 20-30 phút
-- Dọn dẹp: 10 phút
+Trong suốt quá trình thực hành, bạn sẽ làm việc với ba dịch vụ chính:
+
+1. **Amazon API Gateway** – Cung cấp các HTTP API cho ứng dụng.
+2. **AWS Lambda** – Xử lý toàn bộ logic nghiệp vụ theo mô hình Serverless.
+3. **Amazon DynamoDB** – Lưu trữ dữ liệu Todo bằng cơ sở dữ liệu NoSQL.
+
+### Các dịch vụ hỗ trợ
+
+Ngoài ba dịch vụ trên, workshop còn sử dụng:
+
+- **AWS IAM** để quản lý quyền truy cập và bảo mật.
+- **Amazon CloudWatch** để giám sát hoạt động và lưu nhật ký hệ thống.
+- **AWS CloudFormation** (tùy chọn) để triển khai hạ tầng theo mô hình Infrastructure as Code.
+
+---
+
+## Chi phí ước tính
+
+Nếu thực hiện đúng theo hướng dẫn, tổng chi phí của workshop thường **không vượt quá 1 USD**, với điều kiện:
+
+- Hoàn thành bài thực hành trong khoảng 2–3 giờ.
+- Xóa toàn bộ tài nguyên sau khi kết thúc.
+- Tài khoản của bạn vẫn nằm trong chương trình AWS Free Tier.
+
+### Giới hạn miễn phí của AWS Free Tier
+
+Một số dịch vụ được miễn phí trong giới hạn bao gồm:
+
+- **AWS Lambda:** 1.000.000 lượt gọi hàm mỗi tháng.
+- **Amazon DynamoDB:** 25 GB lưu trữ cùng 25 RCU và 25 WCU.
+- **Amazon API Gateway:** 1.000.000 yêu cầu API mỗi tháng trong năm đầu tiên.
+
+**Lưu ý:** Luôn kiểm tra và xóa tài nguyên sau khi hoàn thành workshop để tránh phát sinh chi phí ngoài mong muốn.
+
+---
+
+## Thời gian thực hiện
+
+Tổng thời gian dự kiến: **2 đến 3 giờ**
+
+| Nội dung | Thời gian |
+|----------|-----------:|
+| Chuẩn bị môi trường | 15–20 phút |
+| Tạo bảng DynamoDB | Khoảng 10 phút |
+| Xây dựng các hàm Lambda | 40–50 phút |
+| Cấu hình API Gateway | 30–40 phút |
+| Kiểm thử và xử lý lỗi | 20–30 phút |
+| Dọn dẹp tài nguyên | Khoảng 10 phút |
 
 ---
 
 ## Các bước tiếp theo
 
-1. Tạo tài khoản AWS hoặc đảm bảo tài khoản hiện tại của bạn có các quyền hạn cần thiết
-2. Cài đặt và cấu hình AWS CLI
-3. Kiểm tra thiết lập của bạn bằng: `aws s3 ls`
-4. Tiến hành [Tạo bảng DynamoDB](../3-setup/)
+Sau khi hoàn tất phần chuẩn bị, hãy thực hiện theo thứ tự sau:
+
+1. Đảm bảo tài khoản AWS có đầy đủ quyền cần thiết.
+2. Cài đặt và cấu hình AWS CLI trên máy tính.
+3. Kiểm tra kết nối bằng lệnh:
+
+```bash
+aws s3 ls
+```
+
+4. Nếu mọi thứ hoạt động bình thường, tiếp tục sang phần **Thiết lập bảng DynamoDB**.
 
 ---
 
 {{% notice warning %}}
-KHÔNG cam kết các thông tin đăng nhập AWS cho kiểm soát phiên bản. Thay vào đó, hãy sử dụng các tệp cấu hình AWS CLI trong `~/.aws/credentials`.
+Không lưu hoặc đưa **AWS Access Key** và **Secret Access Key** lên GitHub hoặc bất kỳ hệ thống quản lý mã nguồn nào. Thay vào đó, hãy sử dụng tệp cấu hình được AWS CLI lưu tại thư mục `~/.aws/credentials` để đảm bảo an toàn thông tin.
 {{% /notice %}}
-

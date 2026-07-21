@@ -1,101 +1,148 @@
 ---
-title : "Prerequisites"
+title : "Requirements"
 date: 2026-05-11
 weight : 2
 chapter : false
-pre : " <b> 2. </b> "
+pre : "<b> 2. </b>"
 ---
 
-# Prerequisites
+# Requirements
 
-## AWS Account Setup
+## AWS Account Preparation
 
-You need an AWS account with appropriate permissions to create API Gateway, Lambda, and DynamoDB resources.
+Before starting this workshop, make sure you have an AWS account with sufficient permissions to create and manage the resources required throughout the lab.
 
 ### Required Permissions
-- API Gateway: Create and manage REST APIs
-- Lambda: Create and manage functions
-- DynamoDB: Create and manage tables
-- IAM: Create roles and policies
-- CloudWatch: View logs
+
+Your AWS account should be able to:
+
+- Create and manage **Amazon API Gateway** resources.
+- Deploy and update **AWS Lambda** functions.
+- Create and maintain **Amazon DynamoDB** tables.
+- Configure **IAM** roles and policies.
+- Access **Amazon CloudWatch** for monitoring and log analysis.
 
 {{% notice info %}}
-If you don't have an AWS account, sign up for [AWS Free Tier](https://aws.amazon.com/free/) to get started. Most of this workshop fits within the free tier limits.
+If you don't already have an AWS account, you can register for the **AWS Free Tier**. Most of the resources used in this workshop fall within the free tier limits for eligible accounts.
 {{% /notice %}}
 
 ---
 
-## Local Requirements
+## Development Environment
 
-### Required
-- **AWS CLI**: Version 2.x or higher
-  - [Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-  - Verify: `aws --version`
-  
-- **AWS Account Credentials**: Configured locally
-  - Run: `aws configure`
-  - Enter AWS Access Key ID and Secret Access Key
-  - Default region: `us-east-1` (recommended)
+### Required Software
 
-- **Text Editor or IDE**: VS Code, PyCharm, or similar
+- **AWS CLI (Version 2.x or later)**
+  - Installation Guide: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+  - Verify the installation by running:
 
-### Optional but Recommended
-- **Python 3.8+**: For testing Lambda functions locally
-- **Postman** or **curl**: For testing API endpoints
-- **git**: For version control
+```bash
+aws --version
+```
 
----
+- **AWS CLI Configuration**
 
-## AWS Services Used in This Workshop
+Configure your local credentials with:
 
-1. **API Gateway** - REST API endpoints
-2. **Lambda** - Serverless compute for business logic
-3. **DynamoDB** - NoSQL database for data storage
+```bash
+aws configure
+```
 
-### Additional Services Used
-- **IAM**: For access control and security
-- **CloudWatch**: For monitoring and logs
-- **AWS CloudFormation** (optional): For Infrastructure as Code
+Provide the following information when prompted:
 
----
+- AWS Access Key ID
+- AWS Secret Access Key
+- Default Region (recommended: `us-east-1`)
+- Default Output Format (optional)
 
-## Estimated Costs
+- **Code Editor or IDE**
 
-This workshop should cost **less than $1 USD** if:
-- Completed within 2-3 hours
-- Resources are cleaned up at the end
-- You're within AWS Free Tier limits (eligible accounts)
+You may use any development environment you prefer, such as:
 
-### Free Tier Coverage (12 months)
-- Lambda: 1,000,000 free requests/month
-- DynamoDB: 25 GB storage, 25 RCU, 25 WCU
-- API Gateway: 1,000,000 API calls/month (first year)
+- Visual Studio Code
+- PyCharm
+- IntelliJ IDEA
+- Any other compatible code editor
 
-**Important**: Always delete resources after testing to avoid unexpected charges.
+### Recommended Tools
+
+The following tools are optional but highly recommended:
+
+- **Python 3.8 or newer** for local Lambda development and testing.
+- **Postman** or **curl** to send HTTP requests to your API.
+- **Git** for source code management and version control.
 
 ---
 
-## Time Required
+## AWS Services Used
 
-**Total: 2-3 hours**
-- Setup & Prerequisites: 15-20 minutes
-- Creating DynamoDB Table: 10 minutes
-- Writing Lambda Functions: 40-50 minutes
-- Setting up API Gateway: 30-40 minutes
-- Testing & Debugging: 20-30 minutes
-- Cleanup: 10 minutes
+During this workshop, you will primarily work with the following AWS services:
+
+1. **Amazon API Gateway** – Exposes RESTful HTTP endpoints.
+2. **AWS Lambda** – Executes serverless business logic.
+3. **Amazon DynamoDB** – Stores Todo application data in a managed NoSQL database.
+
+### Supporting Services
+
+Additional AWS services used throughout the workshop include:
+
+- **AWS IAM** for authentication and access management.
+- **Amazon CloudWatch** for monitoring application activity and viewing execution logs.
+- **AWS CloudFormation** (optional) for deploying infrastructure using Infrastructure as Code.
 
 ---
 
-## Next Steps
+## Estimated Cost
 
-1. Create an AWS Account or ensure your existing account has the necessary permissions
-2. Install and configure AWS CLI
-3. Test your setup with: `aws s3 ls`
-4. Proceed to [Setup DynamoDB Table](../3-setup/)
+The overall cost of completing this workshop is expected to remain **below USD 1**, provided that:
+
+- The lab is completed within approximately 2–3 hours.
+- All created AWS resources are removed after the workshop.
+- Your AWS account is eligible for the AWS Free Tier.
+
+### AWS Free Tier Limits
+
+The following free usage limits are typically available:
+
+- **AWS Lambda:** Up to 1,000,000 requests per month.
+- **Amazon DynamoDB:** 25 GB of storage with 25 RCU and 25 WCU.
+- **Amazon API Gateway:** Up to 1,000,000 API requests per month during the first year.
+
+**Important:** Remember to delete all deployed resources after finishing the workshop to prevent unnecessary AWS charges.
+
+---
+
+## Estimated Completion Time
+
+The workshop can typically be completed in **2 to 3 hours**.
+
+| Activity | Estimated Time |
+|----------|---------------:|
+| Environment preparation | 15–20 minutes |
+| Create DynamoDB table | 10 minutes |
+| Develop Lambda functions | 40–50 minutes |
+| Configure API Gateway | 30–40 minutes |
+| Test and troubleshoot APIs | 20–30 minutes |
+| Resource cleanup | 10 minutes |
+
+---
+
+## Before Moving On
+
+Complete the following tasks before proceeding:
+
+1. Verify that your AWS account has the required permissions.
+2. Install and configure AWS CLI.
+3. Confirm your AWS connection by running:
+
+```bash
+aws s3 ls
+```
+
+4. Continue with the **DynamoDB Table Setup** section.
 
 ---
 
 {{% notice warning %}}
-Do NOT commit AWS credentials to version control. Use AWS CLI configuration files in `~/.aws/credentials` instead.
+Never store or commit your AWS Access Key ID and Secret Access Key to Git repositories or any version control system. Instead, keep your credentials securely in the AWS CLI configuration file located at `~/.aws/credentials`.
 {{% /notice %}}
