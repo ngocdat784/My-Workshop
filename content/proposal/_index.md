@@ -11,7 +11,7 @@ weight: 1
 
 **Project Name**: Serverless Todo Application API  
 **Duration**: 12 weeks (April 17 - July 19, 2026)  
-**Intern**: Phan Chế Đức  
+**Intern**: Trần Ngọc Đạt
 **University**: HUTECH (Ho Chi Minh City University of Technology)
 
 ### What is This Project?

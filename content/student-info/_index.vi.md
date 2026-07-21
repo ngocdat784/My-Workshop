@@ -5,9 +5,9 @@ weight: 1
 
 ## Thông tin sinh viên
 
-- **Họ tên**: Phan Chế Đức
-- **Số điện thoại**: 0981580230
-- **Email**: phancheduc@gmail.com
+- **Họ tên**: Trần Ngọc Đạt
+- **Số điện thoại**: 0377735489
+- **Email**: ngocdattran@gmail.com
 - **Trường**: Trường Đại học Công Nghệ Thành phố Hồ Chí Minh (HUTECH)
 - **Chuyên ngành**: Công nghệ Phần mềm
 - **Công ty thực tập**: AWS (Amazon Web Services)
