@@ -14,4 +14,4 @@ weight: 1
 - **Position**: Intern
 - **Internship Period**: April 17, 2026 – July 19, 2026
 
-<img src="image-1.png" alt="alt text" height="" />
+<img src="image_1.jpg" alt="alt text" height="" />

@@ -10,7 +10,7 @@ weight: 1
 
 **Tên Dự án**: Ứng dụng Todo Serverless API  
 **Thời lượng**: 12 tuần (17/04 - 19/07/2026)  
-**Thực tập sinh**: Phan Chế Đức  
+**Thực tập sinh**: Trần Ngọc Đạt  
 **Trường**: HUTECH
 
 ### Dự án là gì?

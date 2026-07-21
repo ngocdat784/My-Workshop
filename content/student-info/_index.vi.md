@@ -14,4 +14,4 @@ weight: 1
 - **Vị trí thực tập**: Intern
 - **Thời gian thực tập**: 17/04/2026 – 10/07/2026
 
-![alt text](image.png)
+![alt text](images.jpg)
